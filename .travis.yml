@@ -15,3 +15,10 @@ notifications:
 script:
   - ng test --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
   - ng e2e --protractor-config=e2e/protractor-travis.conf.js
+
+# Deploy https://easygive-angular.herokuapp.com
+deploy:
+  provider: heroku
+  api_key: $HEROKU
+  on:
+    branch: master
