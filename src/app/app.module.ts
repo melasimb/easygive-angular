@@ -7,8 +7,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AppComponents} from './app-components';
 import {AppMaterialModule} from './app-material.module';
 import {AppServices} from './app-services';
+import {CoreModule} from './core/core.module';
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    AppMaterialModule,
+    CoreModule
+  ],
   declarations: [
     AppComponent,
     AppComponents.COMPONENTS,
@@ -16,12 +24,6 @@ import {AppServices} from './app-services';
   ],
   entryComponents: [
     AppComponents.DIALOGS
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    AppMaterialModule
   ],
   providers: [
     AppServices.SERVICES
