@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>REGISTER</h1>
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput [(ngModel)]="user.username" [formControl]="usernameFormControl" placeholder="Username" type="text" required/>
+    <mat-error *ngIf="usernameFormControl.invalid">{{getErrorMessageUsername()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="user.location" [formControl]="locationFormControl" placeholder="Location" type="text" required/>
+    <mat-error *ngIf="locationFormControl.invalid">{{getErrorMessageLocation()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="user.email" [formControl]="emailFormControl" placeholder="Email" type="email"/>
+    <mat-error *ngIf="emailFormControl.invalid">{{getErrorMessageEmail()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="user.password" placeholder="Password" type="password" required/>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="repeatPassword" placeholder="Repeat password" type="password" required/>
+  </mat-form-field>
+  <mat-error *ngIf="errorPassword">Passwords are different</mat-error>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+  <div>
+    <button mat-raised-button color="primary" [disabled]="invalidUser()" (click)="register()">Register</button>
+  </div>
+</mat-dialog-actions>
