@@ -7,6 +7,11 @@
     <input matInput [(ngModel)]="password" placeholder="Password" type="password"/>
   </mat-form-field>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-raised-button color="primary" mat-dialog-close (click)="login()">Login</button>
+<mat-dialog-actions fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+  <div>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="login()">Login</button>
+  </div>
+  <div>
+    <button mat-stroked-button color="primary" mat-dialog-close (click)="register()">Register</button>
+  </div>
 </mat-dialog-actions>

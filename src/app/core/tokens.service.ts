@@ -2,17 +2,23 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
 import {HttpService} from './http.service';
+import {User} from './user.model';
 
 @Injectable()
 export class TokensService {
 
-  static END_POINT = '/users/token';
+  static USER = '/users';
+  static TOKEN = '/token';
 
   constructor(private httpService: HttpService) {
   }
 
   login(username: string, password: string): Observable<any> {
-    return this.httpService.login(username, password, TokensService.END_POINT);
+    return this.httpService.login(username, password, TokensService.USER + TokensService.TOKEN);
+  }
+
+  register(user: User): Observable<any> {
+    return this.httpService.post(TokensService.USER, user);
   }
 
   logout() {
