@@ -8,9 +8,11 @@ import {AppComponents} from './app-components';
 import {AppMaterialModule} from './app-material.module';
 import {AppServices} from './app-services';
 import {CoreModule} from './core/core.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   imports: [
+    FlexLayoutModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
