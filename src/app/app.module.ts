@@ -9,6 +9,7 @@ import {AppMaterialModule} from './app-material.module';
 import {AppServices} from './app-services';
 import {CoreModule} from './core/core.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -17,7 +18,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     AppRoutingModule,
     BrowserAnimationsModule,
     AppMaterialModule,
-    CoreModule
+    CoreModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,
