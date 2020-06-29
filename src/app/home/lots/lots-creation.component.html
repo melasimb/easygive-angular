@@ -1,0 +1,39 @@
+<div class="container">
+  <div fxFlexOffset="20" fxFlex="60%" fxLayout="column" fxLayoutGap="15px">
+    <p>Image</p>
+    <label class="container-image-upload" fxLayout="column" fxLayoutAlign="center center">
+      <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)" [formControl]="imageFormControl" required>
+      <mat-icon *ngIf="!previewUrl" class="add-photo-icon">add_photo_alternate</mat-icon>
+      <img *ngIf="previewUrl" [src]="previewUrl" class="image-uploaded" alt="imageUploaded"/>
+    </label>
+    <mat-error *ngIf="imageFormControl.invalid">{{getErrorMessageImage()}}</mat-error>
+    <mat-checkbox [(ngModel)]="lot.wish">Wished Lot</mat-checkbox>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="lot.title" placeholder="For example. Sofa like new" type="text" [formControl]="titleFormControl" required>
+      <mat-error *ngIf="titleFormControl.invalid">{{getErrorMessageTitle()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput [(ngModel)]="lot.description" placeholder="For example. Quality, amount, expiration date" type="text" [formControl]="descriptionFormControl" required>
+      <mat-error *ngIf="descriptionFormControl.invalid">{{getErrorMessageDescription()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Schedule</mat-label>
+      <input matInput [(ngModel)]="lot.schedule" placeholder="For example. In the morning from 12:00 to 14:00"  type="text" [formControl]="scheduleFormControl" required>
+      <mat-error *ngIf="scheduleFormControl.invalid">{{getErrorMessageSchedule()}}</mat-error>
+    </mat-form-field>
+    <mat-radio-group fxLayout="column" fxLayoutGap="10px" [(ngModel)]="lot.food">
+      <mat-radio-button [value]=true>
+        Food
+        <mat-icon color="accent">food_bank</mat-icon>
+      </mat-radio-button>
+      <mat-radio-button [value]=false>
+        Non-food
+        <mat-icon color="accent">emoji_objects</mat-icon>
+      </mat-radio-button>
+    </mat-radio-group>
+    <button mat-raised-button color="primary" [disabled]="invalidLot()" (click)="create()">CREATE</button>
+  </div>
+</div>
+
