@@ -14,7 +14,7 @@ export class WelcomeComponent {
   login() {
     this.dialog.open(LoginDialogComponent,
       {
-        data: {homeUrl: 'home'}
+        data: {homeUrl: 'home/lots-list/food'}
       }
     );
   }

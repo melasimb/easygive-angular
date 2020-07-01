@@ -13,4 +13,15 @@ export class LotService {
   create(lot: Lot): Observable<Lot> {
     return this.httpService.post(AppEndpoints.LOTS, lot);
   }
+
+  searchByFoodAndDelivered(food: boolean, delivered: boolean): Observable<Lot[]> {
+    this.httpService.param('food', food.toString());
+    this.httpService.param('delivered', delivered.toString());
+    return this.httpService.get(AppEndpoints.LOTS + '/' + 'searchFoodDelivered');
+  }
+
+  searchByUser(username: string): Observable<Lot[]> {
+    this.httpService.param('username', username);
+    return this.httpService.get(AppEndpoints.LOTS + '/' + 'searchUser');
+  }
 }

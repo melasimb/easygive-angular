@@ -3,6 +3,7 @@ import {LotService} from '../shared/lots/lot.service';
 import {TokensService} from '../../core/tokens.service';
 import {Lot} from '../shared/lots/lot.model';
 import {FormControl, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   templateUrl: 'lots-creation.component.html',
@@ -26,7 +27,7 @@ export class LotsCreationComponent {
   descriptionFormControl = new FormControl('', [Validators.required]);
   scheduleFormControl = new FormControl('', [Validators.required]);
 
-  constructor(private lotService: LotService, private  tokensService: TokensService) {
+  constructor(private lotService: LotService, private  tokensService: TokensService, private router: Router) {
   }
 
   getErrorMessageImage() {
@@ -62,7 +63,7 @@ export class LotsCreationComponent {
     this.lot.image = this.previewUrl.split(',')[1];
     this.lot.username = this.tokensService.getUsername();
     this.lotService.create(this.lot).subscribe(
-      lot => console.log(lot)
+      () => this.router.navigate(['/home/lots-list', 'my-lots'])
     );
   }
 
