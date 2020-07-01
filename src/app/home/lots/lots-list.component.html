@@ -1,0 +1,36 @@
+<div class="container">
+  <div fxFlexOffset="20" fxFlex="60%" fxLayout="column">
+    <mat-card *ngIf="lotsEmpty">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon class="icon-lot-empty">
+            sentiment_very_dissatisfied
+          </mat-icon>
+           Oh! There aren't lots
+        </mat-card-title>
+        <mat-card-subtitle>
+          <h3>{{messageLotsEmpty}}</h3>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+    <div *ngIf="!lotsEmpty" fxLayout="column" fxLayoutGap="15px">
+      <mat-card *ngFor="let lot of lots;">
+        <mat-card-header>
+          <div mat-card-avatar><img [src]="['data:image/jpeg;base64,' + lot.image]" alt="imageLot"/></div>
+          <mat-card-title>{{lot.title}}</mat-card-title>
+          <mat-card-subtitle>{{lot.description}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+        <span>
+          <mat-icon color="accent">face</mat-icon>
+          {{lot.username}}
+        </span>
+        <span>
+          <mat-icon color="accent">place</mat-icon>
+            {{lot.location}}
+        </span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
