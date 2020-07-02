@@ -28,7 +28,7 @@ input[type="file"]{
 
 @media (max-width:600px) {
   .image-uploaded{
-    width: 100%;
+    width: 85%;
     height: auto;
   }
 }

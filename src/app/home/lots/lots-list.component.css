@@ -27,3 +27,10 @@ img{
 .icon-lot-empty{
   transform: scale(1.5);
 }
+
+.box{
+  border: 1px solid #FF0266;
+  border-radius: 5px;
+  margin: 2px;
+  padding: 4px;
+}
