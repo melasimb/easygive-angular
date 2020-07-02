@@ -1,16 +1,19 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LotService} from '../shared/lots/lot.service';
 import {TokensService} from '../../core/tokens.service';
 import {Lot} from '../shared/lots/lot.model';
 import {FormControl, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   templateUrl: 'lots-creation.component.html',
   styleUrls: ['lots-creation.component.css']
 })
-export class LotsCreationComponent {
-  lot: Lot = {
+export class LotsCreationComponent implements OnInit {
+  id: string = null;
+  isUpdate = false;
+  lot: Lot = null;
+  lotCreate: Lot = {
     image: null,
     title: null,
     description: null,
@@ -22,16 +25,32 @@ export class LotsCreationComponent {
   };
   image: File = null;
   previewUrl: any = null;
-  imageFormControl = new FormControl('', [Validators.required]);
   titleFormControl = new FormControl('', [Validators.required]);
   descriptionFormControl = new FormControl('', [Validators.required]);
   scheduleFormControl = new FormControl('', [Validators.required]);
 
-  constructor(private lotService: LotService, private  tokensService: TokensService, private router: Router) {
+  constructor(private lotService: LotService, private  tokensService: TokensService,
+              private router: Router, private activatedRoute: ActivatedRoute) {
+  }
+
+  ngOnInit() {
+    this.activatedRoute.queryParamMap.subscribe(
+      queryParamMap => {
+        this.id = queryParamMap.get('id');
+        if (this.id === null) {
+          this.isUpdate = false;
+          this.lot = this.lotCreate;
+          this.previewUrl = null;
+        } else {
+          this.isUpdate = true;
+          this.read();
+        }
+      }
+    );
   }
 
   getErrorMessageImage() {
-    return this.imageFormControl.hasError('required') ? 'Please, select an image' : '';
+    return 'Please, select an image';
   }
 
   getErrorMessageTitle() {
@@ -56,19 +75,34 @@ export class LotsCreationComponent {
     reader.readAsDataURL(this.image);
     reader.onload = () => {
       this.previewUrl = reader.result;
+      this.lot.image = this.previewUrl.split(',')[1];
     };
   }
 
+  read() {
+    this.lotService.read(this.id).subscribe(
+      lot => {
+        this.lot = lot;
+        this.previewUrl = 'data:image/jpeg;base64,' + this.lot.image;
+      }
+    );
+  }
+
   create() {
-    this.lot.image = this.previewUrl.split(',')[1];
     this.lot.username = this.tokensService.getUsername();
     this.lotService.create(this.lot).subscribe(
       () => this.router.navigate(['/home/lots-list', 'my-lots'])
     );
   }
 
+  update() {
+    this.lotService.update(this.id, this.lot).subscribe(
+      () => this.router.navigate(['/home/lots-list', 'my-lots'])
+    );
+  }
+
   invalidLot(): boolean {
-    return this.imageFormControl.hasError('required') || this.titleFormControl.hasError('required') ||
+    return !this.previewUrl || this.titleFormControl.hasError('required') ||
       this.descriptionFormControl.hasError('required') || this.scheduleFormControl.hasError('required');
   }
 }

@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>DELETE LOT</h1>
+<mat-dialog-content fxLayout="row" fxLayoutAlign="center center">
+    <mat-icon color="accent">warning</mat-icon>
+    <p>&nbsp;&nbsp;&nbsp; Do you want to delete the lot?</p>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
+  <button mat-raised-button color="primary" mat-dialog-close>NO</button>
+  <button mat-raised-button color="primary" mat-dialog-close (click)="delete()">YES</button>
+</mat-dialog-actions>

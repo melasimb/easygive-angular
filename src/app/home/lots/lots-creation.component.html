@@ -2,12 +2,22 @@
   <div fxFlexOffset="20" fxFlex="60%" fxLayout="column" fxLayoutGap="15px">
     <p>Image</p>
     <label class="container-image-upload" fxLayout="column" fxLayoutAlign="center center">
-      <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)" [formControl]="imageFormControl" required>
+      <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)">
       <mat-icon *ngIf="!previewUrl" class="add-photo-icon">add_photo_alternate</mat-icon>
       <img *ngIf="previewUrl" [src]="previewUrl" class="image-uploaded" alt="imageUploaded"/>
     </label>
-    <mat-error *ngIf="imageFormControl.invalid">{{getErrorMessageImage()}}</mat-error>
-    <mat-checkbox [(ngModel)]="lot.wish">Wished Lot</mat-checkbox>
+    <mat-error *ngIf="!previewUrl">{{getErrorMessageImage()}}</mat-error>
+    <mat-checkbox fxLayout="row" fxLayoutAlign="center center" [(ngModel)]="lot.delivered" *ngIf=isUpdate>
+      <span fxLayout="row" fxLayoutAlign="center center">
+        DELIVERED LOT
+        <mat-icon color="accent">group</mat-icon>
+      </span>
+    </mat-checkbox>
+    <mat-divider></mat-divider>
+    <mat-checkbox [(ngModel)]="lot.wish">
+        WISHED LOT
+        <mat-icon color="accent">star</mat-icon>
+    </mat-checkbox>
     <mat-form-field>
       <mat-label>Title</mat-label>
       <input matInput [(ngModel)]="lot.title" placeholder="For example. Sofa like new" type="text" [formControl]="titleFormControl" required>
@@ -25,15 +35,16 @@
     </mat-form-field>
     <mat-radio-group fxLayout="column" fxLayoutGap="10px" [(ngModel)]="lot.food">
       <mat-radio-button [value]=true>
-        Food
+        FOOD
         <mat-icon color="accent">food_bank</mat-icon>
       </mat-radio-button>
       <mat-radio-button [value]=false>
-        Non-food
+        NON-FOOD
         <mat-icon color="accent">emoji_objects</mat-icon>
       </mat-radio-button>
     </mat-radio-group>
-    <button mat-raised-button color="primary" [disabled]="invalidLot()" (click)="create()">CREATE</button>
+    <button mat-raised-button color="accent" [disabled]="invalidLot()" (click)="create()" *ngIf=!isUpdate>CREATE</button>
+    <button mat-raised-button color="accent" [disabled]="invalidLot()" (click)="update()" *ngIf=isUpdate>UPDATE</button>
   </div>
 </div>
 

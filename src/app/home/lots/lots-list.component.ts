@@ -34,7 +34,7 @@ export class LotsListComponent implements OnInit {
           this.lotsEmpty = false;
         },
         () => {
-          this.messageLotsEmpty = 'There aren´t food-lots avaible yet.';
+          this.messageLotsEmpty = 'There aren´t food-lots available yet.';
           this.lots = null;
           this.lotsEmpty = true;
         }
@@ -47,7 +47,7 @@ export class LotsListComponent implements OnInit {
           this.lotsEmpty = false;
         },
         () => {
-          this.messageLotsEmpty = 'There aren´t food avaible yet.';
+          this.messageLotsEmpty = 'There aren´t food available yet.';
           this.lots = null;
           this.lotsEmpty = true;
         }
