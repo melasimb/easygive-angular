@@ -15,7 +15,7 @@ export class LotsListComponent implements OnInit {
   messageLotsEmpty: string = null;
   lotsEmpty = false;
 
-  constructor(private lotService: LotService, private activatedRoute: ActivatedRoute, private tokensService: TokensService) {
+  constructor(private lotService: LotService, private tokensService: TokensService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {

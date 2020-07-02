@@ -1,0 +1,56 @@
+<div class="container">
+  <div fxFlexOffset="20" fxFlex="60%" fxLayout="column" fxLayoutGap="15px">
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px" *ngIf="lotOfUser">
+      <button mat-raised-button color="accent" fxLayout="row" fxLayoutAlign="center center">
+        <mat-icon>edit</mat-icon>
+        <span>EDIT</span>
+      </button>
+      <button mat-raised-button color="accent" fxLayout="row" fxLayoutAlign="center center">
+        <mat-icon>delete_sweep</mat-icon>
+        <span>DELETE</span>
+      </button>
+    </div>
+    <label class="container-image-upload" fxLayout="column" fxLayoutAlign="center center">
+      <img [src]="['data:image/jpeg;base64,' + lot.image]" class="image-uploaded" alt="imageUploaded"/>
+    </label>
+    <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="0px">
+      <div fxLayout="row" fxLayout.xs="column">
+        <span class="box" fxLayout="row" fxLayoutAlign="center center">
+          <mat-icon color="accent">person_outline</mat-icon>{{lot.username}}
+        </span>
+        <span class="box" fxLayout="row" fxLayoutAlign="center center">
+          <mat-icon color="accent">place</mat-icon>{{lot.location}}
+        </span>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <h1 class="marginB5 color-primary">{{lot.title}}</h1>
+        <p class="marginT5">{{lot.description}}</p>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <p class="marginB5 color-primary"><b>Schedule</b></p>
+        <p class="marginT5">{{lot.schedule}}</p>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column">
+        <span class="box-primary" fxLayout="row" fxLayoutAlign="center center" *ngIf="lot.food">
+          <mat-icon>food_bank</mat-icon>FOOD
+        </span>
+        <span class="box-primary" fxLayout="row" fxLayoutAlign="center center" *ngIf="!lot.food">
+          <mat-icon>emoji_objects</mat-icon>NON-FOOD
+        </span>
+        <span class="box-primary" fxLayout="row" fxLayoutAlign="center center" *ngIf="!lot.delivered">
+          <mat-icon>done_all</mat-icon>AVAILABLE
+        </span>
+        <span class="box-primary" fxLayout="row" fxLayoutAlign="center center" *ngIf="lot.delivered">
+          <mat-icon>warning</mat-icon>NON-AVAILABLE
+        </span>
+        <span class="box-primary" fxLayout="row" fxLayoutAlign="center center" *ngIf="lot.wish">
+          <mat-icon>star</mat-icon>WISHED
+        </span>
+      </div>
+    </mat-card>
+    <button mat-raised-button color="accent" fxLayout="row" fxLayoutAlign="center center" *ngIf="!lotOfUser">
+      <span>REQUEST LOT &nbsp;&nbsp;</span>
+      <mat-icon>message</mat-icon>
+    </button>
+  </div>
+</div>

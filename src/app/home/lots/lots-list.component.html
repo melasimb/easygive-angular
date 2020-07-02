@@ -14,21 +14,23 @@
       </mat-card-header>
     </mat-card>
     <div *ngIf="!lotsEmpty" fxLayout="column" fxLayoutGap="15px">
-      <mat-card *ngFor="let lot of lots;">
+      <mat-card *ngFor="let lot of lots" [routerLink]="['/home/lots-read', lot.id]">
         <mat-card-header>
           <div mat-card-avatar><img [src]="['data:image/jpeg;base64,' + lot.image]" alt="imageLot"/></div>
           <mat-card-title>{{lot.title}}</mat-card-title>
           <mat-card-subtitle>{{lot.description}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-        <span>
-          <mat-icon color="accent">face</mat-icon>
-          {{lot.username}}
-        </span>
-        <span>
-          <mat-icon color="accent">place</mat-icon>
-            {{lot.location}}
-        </span>
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <span class="box" fxLayoutAlign="start center">
+              <mat-icon color="accent">person_outline</mat-icon>
+              <span>{{lot.username}}</span>
+            </span>
+            <span class="box" fxLayoutAlign="start center">
+              <mat-icon color="accent">place</mat-icon>
+              <span>{{lot.location}}</span>
+            </span>
+          </div>
         </mat-card-content>
       </mat-card>
     </div>
