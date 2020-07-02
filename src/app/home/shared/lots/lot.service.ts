@@ -18,6 +18,14 @@ export class LotService {
     return this.httpService.get(AppEndpoints.LOTS + '/' + id);
   }
 
+  update(id: string, lot: Lot): Observable<Lot> {
+    return this.httpService.put(AppEndpoints.LOTS + '/' + id, lot);
+  }
+
+  delete(id: string): Observable<void> {
+    return this.httpService.delete(AppEndpoints.LOTS + '/' + id);
+  }
+
   searchByFoodAndDelivered(food: boolean, delivered: boolean): Observable<Lot[]> {
     this.httpService.param('food', food.toString());
     this.httpService.param('delivered', delivered.toString());

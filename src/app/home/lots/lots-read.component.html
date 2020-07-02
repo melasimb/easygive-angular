@@ -1,11 +1,11 @@
 <div class="container">
   <div fxFlexOffset="20" fxFlex="60%" fxLayout="column" fxLayoutGap="15px">
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px" *ngIf="lotOfUser">
-      <button mat-raised-button color="accent" fxLayout="row" fxLayoutAlign="center center">
+      <button mat-raised-button color="accent" fxLayout="row" fxLayoutAlign="center center" [routerLink]="['/home/lots-creation']" [queryParams]="{id: lot.id}">
         <mat-icon>edit</mat-icon>
         <span>EDIT</span>
       </button>
-      <button mat-raised-button color="accent" fxLayout="row" fxLayoutAlign="center center">
+      <button mat-raised-button color="accent" fxLayout="row" fxLayoutAlign="center center" (click)="delete()">
         <mat-icon>delete_sweep</mat-icon>
         <span>DELETE</span>
       </button>
