@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog, MatSnackBar} from '@angular/material';
 import {TokensService} from '../tokens.service';
 import {Router} from '@angular/router';
 import {User} from '../user.model';
@@ -26,7 +26,8 @@ export class RegisterDialogComponent {
   mobileFormControl = new FormControl('', [Validators.required]);
   emailFormControl = new FormControl('', [Validators.email]);
 
-  constructor(@Inject(MAT_DIALOG_DATA) data: any, private tokensService: TokensService, private router: Router, private dialog: MatDialog) {
+  constructor(@Inject(MAT_DIALOG_DATA) data: any, private tokensService: TokensService, private router: Router, private dialog: MatDialog,
+              private message: MatSnackBar) {
     this.homeUrl = data.homeUrl;
   }
 
@@ -39,6 +40,8 @@ export class RegisterDialogComponent {
               this.router.navigate([this.homeUrl]);
               this.dialog.closeAll();
             }
+            , () => {}
+            , () => this.message.open('User created successfully', null, {duration: 2000})
           );
         })
       ).subscribe();
@@ -62,11 +65,7 @@ export class RegisterDialogComponent {
   }
 
   differentPassword(): boolean {
-    if (this.user.password !== this.repeatPassword) {
-      this.errorPassword = true;
-    } else {
-      this.errorPassword = false;
-    }
+    this.errorPassword = this.user.password !== this.repeatPassword;
     return this.errorPassword;
   }
 

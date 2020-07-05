@@ -12,6 +12,7 @@ import {Lot} from '../shared/lots/lot.model';
 export class LotsListComponent implements OnInit {
 
   lots: Lot[] = null;
+  title: string = null;
   messageLotsEmpty: string = null;
   lotsEmpty = false;
 
@@ -32,6 +33,7 @@ export class LotsListComponent implements OnInit {
         lots => {
           this.lots = lots;
           this.lotsEmpty = false;
+          this.title = 'FOOD LOTS';
         },
         () => {
           this.messageLotsEmpty = 'There aren´t food-lots available yet.';
@@ -45,6 +47,7 @@ export class LotsListComponent implements OnInit {
         lots => {
           this.lots = lots;
           this.lotsEmpty = false;
+          this.title = 'NON-FOOD LOTS';
         },
         () => {
           this.messageLotsEmpty = 'There aren´t food available yet.';
@@ -58,6 +61,7 @@ export class LotsListComponent implements OnInit {
         lots => {
           this.lots = lots;
           this.lotsEmpty = false;
+          this.title = 'MY LOTS';
         },
         () => {
           this.messageLotsEmpty = 'You haven´t added lots yet.';
