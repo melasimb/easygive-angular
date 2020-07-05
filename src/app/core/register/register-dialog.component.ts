@@ -14,6 +14,7 @@ export class RegisterDialogComponent {
   user: User = {
     username: null,
     location: null,
+    mobile: null,
     email: null,
     password: null
   };
@@ -22,10 +23,11 @@ export class RegisterDialogComponent {
   homeUrl: string;
   usernameFormControl = new FormControl('', [Validators.required]);
   locationFormControl = new FormControl('', [Validators.required]);
+  mobileFormControl = new FormControl('', [Validators.required]);
   emailFormControl = new FormControl('', [Validators.email]);
 
-  constructor(@Inject(MAT_DIALOG_DATA) data: any, private tokensService: TokensService, private snackBar: MatSnackBar,
-              private router: Router, private dialog: MatDialog) {
+  constructor(@Inject(MAT_DIALOG_DATA) data: any, private tokensService: TokensService, private router: Router, private dialog: MatDialog,
+              private message: MatSnackBar) {
     this.homeUrl = data.homeUrl;
   }
 
@@ -38,6 +40,8 @@ export class RegisterDialogComponent {
               this.router.navigate([this.homeUrl]);
               this.dialog.closeAll();
             }
+            , () => {}
+            , () => this.message.open('User created successfully', null, {duration: 2000})
           );
         })
       ).subscribe();
@@ -45,11 +49,15 @@ export class RegisterDialogComponent {
   }
 
   getErrorMessageUsername() {
-    return this.usernameFormControl.hasError('required') ? 'You must enter a value' : '';
+    return this.usernameFormControl.hasError('required') ? 'Please, enter a username' : '';
   }
 
   getErrorMessageLocation() {
-    return this.locationFormControl.hasError('required') ? 'You must enter a value' : '';
+    return this.locationFormControl.hasError('required') ? 'Please, enter a message' : '';
+  }
+
+  getErrorMessageMobile() {
+    return this.mobileFormControl.hasError('required') ? 'Please, enter a mobile' : '';
   }
 
   getErrorMessageEmail() {
@@ -57,16 +65,12 @@ export class RegisterDialogComponent {
   }
 
   differentPassword(): boolean {
-    if (this.user.password !== this.repeatPassword) {
-      this.errorPassword = true;
-    } else {
-      this.errorPassword = false;
-    }
+    this.errorPassword = this.user.password !== this.repeatPassword;
     return this.errorPassword;
   }
 
   invalidUser(): boolean {
     return this.usernameFormControl.hasError('required') || this.locationFormControl.hasError('required') ||
-      this.emailFormControl.hasError('email');
+      this.mobileFormControl.hasError('required') || this.emailFormControl.hasError('email');
   }
 }

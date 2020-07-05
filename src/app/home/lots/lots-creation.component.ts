@@ -4,6 +4,7 @@ import {TokensService} from '../../core/tokens.service';
 import {Lot} from '../shared/lots/lot.model';
 import {FormControl, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   templateUrl: 'lots-creation.component.html',
@@ -30,7 +31,7 @@ export class LotsCreationComponent implements OnInit {
   scheduleFormControl = new FormControl('', [Validators.required]);
 
   constructor(private lotService: LotService, private  tokensService: TokensService,
-              private router: Router, private activatedRoute: ActivatedRoute) {
+              private router: Router, private activatedRoute: ActivatedRoute, private message: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -92,12 +93,16 @@ export class LotsCreationComponent implements OnInit {
     this.lot.username = this.tokensService.getUsername();
     this.lotService.create(this.lot).subscribe(
       () => this.router.navigate(['/home/lots-list', 'my-lots'])
+      , () => {}
+      , () => this.message.open('Lot created successfully', null, {duration: 2000})
     );
   }
 
   update() {
     this.lotService.update(this.id, this.lot).subscribe(
       () => this.router.navigate(['/home/lots-list', 'my-lots'])
+      , () => {}
+      , () => this.message.open('Lot updated successfully', null, {duration: 2000})
     );
   }
 

@@ -9,6 +9,10 @@
     <mat-error *ngIf="locationFormControl.invalid">{{getErrorMessageLocation()}}</mat-error>
   </mat-form-field>
   <mat-form-field>
+    <input matInput [(ngModel)]="user.mobile" [formControl]="mobileFormControl" placeholder="Mobile" type="number" required/>
+    <mat-error *ngIf="mobileFormControl.invalid">{{getErrorMessageMobile()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
     <input matInput [(ngModel)]="user.email" [formControl]="emailFormControl" placeholder="Email" type="email"/>
     <mat-error *ngIf="emailFormControl.invalid">{{getErrorMessageEmail()}}</mat-error>
   </mat-form-field>

@@ -1,8 +1,3 @@
-.container{
-  margin-top: 25px;
-  margin-bottom: 25px;
-}
-
 .container-image-upload{
   background-color: #CFD8DC;
   width: 100%;
@@ -26,10 +21,6 @@
 
 .marginT5{
   margin-top: 2px;
-}
-
-.color-primary{
-  color: #0097a7;
 }
 
 .box{

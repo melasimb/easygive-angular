@@ -21,7 +21,8 @@ export class LotsReadComponent {
     food: null,
     delivered: null,
     username: null,
-    location: null
+    location: null,
+    mobile: null
   };
   id: string = null;
   lotOfUser = false;

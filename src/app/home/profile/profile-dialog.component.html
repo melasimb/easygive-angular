@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>UPDATE PASSWORD</h1>
+<mat-dialog-content fxLayout="column" fxLayoutAlign="start center">
+  <mat-form-field>
+    <mat-label>New password</mat-label>
+    <input matInput [(ngModel)]="userCredential.password" [formControl]="passwordFormControl" type="password" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Repeat new password</mat-label>
+    <input matInput [(ngModel)]="repeatPassword" [formControl]="passwordFormControl" type="password" required>
+  </mat-form-field>
+  <mat-error *ngIf="differentPassword()">Please enter the new password twice</mat-error>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="column" fxLayoutAlign="center center">
+  <button mat-raised-button color="primary" mat-dialog-close [disabled]="differentPassword()" (click)="updatePassword()">UPDATE</button>
+</mat-dialog-actions>

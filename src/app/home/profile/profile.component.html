@@ -1,0 +1,33 @@
+<div class="container">
+  <div fxFlexOffset="20" fxFlex="60%" fxLayout="column" fxLayoutGap="15px">
+    <h2 class="color-primary">PERSONAL INFORMATION</h2>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput [(ngModel)]="user.username" type="text" [formControl]="usernameFormControl" required>
+      <mat-error *ngIf="usernameFormControl.invalid">{{getErrorMessageUsername()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Location</mat-label>
+      <input matInput [(ngModel)]="user.location" type="text" [formControl]="locationFormControl" required>
+      <mat-error *ngIf="locationFormControl.invalid">{{getErrorMessageLocation()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Mobile</mat-label>
+      <input matInput [(ngModel)]="user.mobile" type="text" [formControl]="mobileFormControl" required>
+      <mat-error *ngIf="mobileFormControl.invalid">{{getErrorMessageMobile()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="user.email" type="text" [formControl]="emailFormControl" required>
+      <mat-error *ngIf="emailFormControl.invalid">{{getErrorMessageEmail()}}</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="accent" [disabled]="invalidUser()" (click)="update()">UPDATE</button>
+    <p></p>
+    <mat-divider></mat-divider>
+    <h2 class="color-primary">UPDATE PASSWORD</h2>
+    <mat-form-field (click)="updatePassword()">
+      <mat-label>Password</mat-label>
+      <input matInput [(ngModel)]="user.password" type="password" readonly/>
+    </mat-form-field>
+  </div>
+</div>
