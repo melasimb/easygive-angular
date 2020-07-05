@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatSnackBar} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog} from '@angular/material';
 import {TokensService} from '../tokens.service';
 import {Router} from '@angular/router';
 import {User} from '../user.model';
@@ -14,6 +14,7 @@ export class RegisterDialogComponent {
   user: User = {
     username: null,
     location: null,
+    mobile: null,
     email: null,
     password: null
   };
@@ -22,10 +23,10 @@ export class RegisterDialogComponent {
   homeUrl: string;
   usernameFormControl = new FormControl('', [Validators.required]);
   locationFormControl = new FormControl('', [Validators.required]);
+  mobileFormControl = new FormControl('', [Validators.required]);
   emailFormControl = new FormControl('', [Validators.email]);
 
-  constructor(@Inject(MAT_DIALOG_DATA) data: any, private tokensService: TokensService, private snackBar: MatSnackBar,
-              private router: Router, private dialog: MatDialog) {
+  constructor(@Inject(MAT_DIALOG_DATA) data: any, private tokensService: TokensService, private router: Router, private dialog: MatDialog) {
     this.homeUrl = data.homeUrl;
   }
 
@@ -45,11 +46,15 @@ export class RegisterDialogComponent {
   }
 
   getErrorMessageUsername() {
-    return this.usernameFormControl.hasError('required') ? 'You must enter a value' : '';
+    return this.usernameFormControl.hasError('required') ? 'Please, enter a username' : '';
   }
 
   getErrorMessageLocation() {
-    return this.locationFormControl.hasError('required') ? 'You must enter a value' : '';
+    return this.locationFormControl.hasError('required') ? 'Please, enter a message' : '';
+  }
+
+  getErrorMessageMobile() {
+    return this.mobileFormControl.hasError('required') ? 'Please, enter a mobile' : '';
   }
 
   getErrorMessageEmail() {
@@ -67,6 +72,6 @@ export class RegisterDialogComponent {
 
   invalidUser(): boolean {
     return this.usernameFormControl.hasError('required') || this.locationFormControl.hasError('required') ||
-      this.emailFormControl.hasError('email');
+      this.mobileFormControl.hasError('required') || this.emailFormControl.hasError('email');
   }
 }

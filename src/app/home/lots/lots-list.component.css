@@ -1,17 +1,8 @@
-.container{
-  margin-top: 25px;
-  margin-bottom: 25px;
-}
-
 .mat-card-avatar{
   background-color: #CFD8DC;
   border-radius: 0%;
   width: 60px;
   height: 60px;
-}
-
-.mat-card-title{
-  color: #0097a7;
 }
 
 .mat-card-content{

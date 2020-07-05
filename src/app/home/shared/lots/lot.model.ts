@@ -9,4 +9,5 @@ export interface Lot {
   delivered: boolean;
   username: string;
   location?: string;
+  mobile?: string;
 }
