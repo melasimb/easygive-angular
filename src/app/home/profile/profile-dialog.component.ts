@@ -24,9 +24,9 @@ export class ProfileDialogComponent {
 
   updatePassword() {
     this.userService.updatePassword(this.username, this.userCredential).subscribe(
-      () => this.tokensService.logout()
+      () => {}
       , () => {}
-      , () => this.message.open('Password has been updated correctly. Please log in again', null, {duration: 4000})
+      , () => this.message.open('Password has been updated correctly', null, {duration: 4000})
     );
   }
 

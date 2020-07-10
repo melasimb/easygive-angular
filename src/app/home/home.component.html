@@ -35,7 +35,7 @@
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
         <button mat-button>
           <mat-icon>person_outline</mat-icon>
-          <span>{{username}}</span>
+          <span>{{tokensService.getUsername()}}</span>
         </button>
         <button mat-button (click)="logout()">
           <mat-icon>power_settings_new</mat-icon>

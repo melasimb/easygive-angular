@@ -28,4 +28,8 @@ export class TokensService {
   getUsername(): string {
     return this.httpService.getToken() ? this.httpService.getToken().username : undefined;
   }
+
+  setUsername(username: string) {
+    this.httpService.getToken().username = username;
+  }
 }
