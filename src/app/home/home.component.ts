@@ -9,7 +9,7 @@ import {TokensService} from '../core/tokens.service';
 export class HomeComponent {
   username: string;
 
-  constructor(private tokensService: TokensService) {
+  constructor(public tokensService: TokensService) {
     this.username = tokensService.getUsername();
   }
 
