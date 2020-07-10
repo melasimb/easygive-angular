@@ -50,9 +50,9 @@ export class ProfileComponent {
 
   update() {
     this.userService.update(this.username, this.user).subscribe(
-      () => this.tokensService.logout()
+      () => this.tokensService.setUsername(this.user.username)
       , () => {}
-      , () => this.message.open('Personal information has been updated correctly. Please log in again', null, {duration: 4000})
+      , () => this.message.open('Personal information has been updated correctly', null, {duration: 4000})
     );
   }
 
