@@ -1,6 +1,6 @@
 {
   "name": "easygive-angular",
-  "version": "1.0.0-SNAPSHOT",
+  "version": "1.0.0-Release",
   "scripts": {
     "postinstall": "ng build --prod",
     "start": "node server.js"

@@ -6,7 +6,7 @@ realizado con Spring & webflux.
 
 ### Estado del código  
 [![Build Status](https://travis-ci.org/melasimb/easygive-angular.svg?branch=develop)](https://travis-ci.org/melasimb/easygive-angular)
-[![](https://img.shields.io/static/v1?label=Heroku&message=v1.0.0-SNAPSHOT&color=green)](https://easygive-angular.herokuapp.com)
+[![](https://img.shields.io/static/v1?label=Heroku&message=v1.0.0-Release&color=green)](https://easygive-angular.herokuapp.com)
 
 ### Tecnologías necesarias
 `Typescript` `npm (6.13)` `Angular (8.3)` `Material` `Node (12.14)` `HTML` `CSS` --- CI: `GitHub` `Travis-CI` `Heroku`
